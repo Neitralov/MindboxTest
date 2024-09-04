@@ -1,4 +1,4 @@
-# Mindbox-Test
+# MindboxTest
 Решение тестового задания для Mindbox
 * Доступно создание треугольников и кругов;
 * Возможна проверка треугольника на прямоугольность;
@@ -23,3 +23,21 @@ void PrintArea(IShape shape)
 }
 ```
 
+# Ответ на задачу с MS SQL Server
+
+Запрос для получения списка "Имя продукта - Имя категории" выглядит следующим образом:
+
+```sql
+SELECT 
+    p.Name AS Product_name,
+    c.Name AS Category_name
+FROM 
+    Products p
+LEFT JOIN 
+    ProductsCategories pc ON p.Product_Id = pc.Product_Id
+LEFT JOIN 
+    Categories c ON pc.Category_Id = c.Category_Id;
+```
+
+##### ProductsCategories это связующая таблица, необходимая для разрешения связи М:М
+##### Left Join обеспечит присутствие названия продукта в результатирующей таблице, даже если у продукта нет категории
